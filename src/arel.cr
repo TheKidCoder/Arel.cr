@@ -18,7 +18,7 @@ require "./arel/predications"
 # require 'arel/select_manager'
 # require 'arel/update_manager'
 # require 'arel/delete_manager'
-# require 'arel/nodes'
+require "./arel/nodes"
 
 require "./arel/version"
 

@@ -2,14 +2,14 @@ module Arel
   module Collectors
     class PlainString
       def initialize
-        @str = ''
+        @str = ""
       end
 
       def value
         @str
       end
 
-      def << str
+      def <<(str)
         @str << str
         self
       end

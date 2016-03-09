@@ -1,22 +1,20 @@
-# encoding: utf-8
-
-require 'arel/collectors/plain_string'
+require "./plain_string"
 
 module Arel
   module Collectors
     class SQLString < PlainString
-      def initialize(*)
+      def initialize(*args)
         super
         @bind_index = 1
       end
 
-      def add_bind bind
+      def add_bind(bind)
         self << yield(@bind_index)
         @bind_index += 1
         self
       end
 
-      def compile bvs
+      def compile(bvs)
         value
       end
     end
