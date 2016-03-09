@@ -10,7 +10,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   arel.cr:
-    github: [your-github-name]/arel.cr
+    github: thekidcoder/arel.cr
 ```
 
 
@@ -30,7 +30,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/arel.cr/fork )
+1. Fork it ( https://github.com/thekidcoder/arel.cr/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -38,4 +38,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) Christopher Ostrowski - creator, maintainer
+- [thekidcoder](https://github.com/thekidcoder) Christopher Ostrowski - creator, maintainer
