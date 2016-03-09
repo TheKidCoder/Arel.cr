@@ -1,6 +1,6 @@
 module Arel
   module Expressions
-    def count distinct = false
+    def count(distinct = false)
       Nodes::Count.new [self], distinct
     end
 
@@ -20,7 +20,7 @@ module Arel
       Nodes::Avg.new [self]
     end
 
-    def extract field
+    def extract(field)
       Nodes::Extract.new [self], field
     end
 
