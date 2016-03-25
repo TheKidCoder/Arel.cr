@@ -5,15 +5,15 @@ module Arel
         @dispatch = get_dispatch_cache
       end
 
-      def accept object
-        visit object
+      def accept(object)
+        visit(object)
       end
 
-      private
+      # private
 
       def self.dispatch_cache
         Hash.new do |hash, klass|
-          hash[klass] = "visit_#{(klass.name || '').gsub('::', '_')}"
+          hash[klass] = "visit_#{(klass.name || "").gsub("::", "_")}"
         end
       end
 
@@ -25,16 +25,18 @@ module Arel
         @dispatch
       end
 
-      def visit object
+      def visit(object)
         send dispatch[object.class], object
-      rescue NoMethodError => e
+      rescue e : NoMethodError
         raise e if respond_to?(dispatch[object.class], true)
         superklass = object.class.ancestors.find { |klass|
           respond_to?(dispatch[klass], true)
         }
         raise(TypeError, "Cannot visit #{object.class}") unless superklass
         dispatch[object.class] = dispatch[superklass]
-        retry
+        #CRYSTAL
+        #Not yet supported as of 0.14.1
+        # retry
       end
     end
   end

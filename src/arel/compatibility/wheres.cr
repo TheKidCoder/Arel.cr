@@ -1,20 +1,20 @@
 module Arel
-  module Compatibility # :nodoc:
-    class Wheres # :nodoc:
-      include Enumerable
+  module Compatibility
+    class Wheres
+      # include Enumerable
 
-      module Value # :nodoc:
-        attr_accessor :visitor
+      module Value 
+        property :visitor
         def value
           visitor.accept self
         end
 
         def name
-          super.to_sym
+          previous_def.to_sym
         end
       end
 
-      def initialize engine, collection
+      def initialize(engine, collection)
         @engine     = engine
         @collection = collection
       end

@@ -3,18 +3,26 @@ module Arel
     include Arel::Crud
     include Arel::FactoryMethods
 
-    @engine = nil
-    class << self; attr_accessor :engine; end
+    @@engine = nil
+    def self.engine
+      @@engine
+    end
 
-    attr_accessor :name, :aliases, :table_alias
+    def self.engine=(eng)
+      @@engine = eng
+    end
+
+    property :name, :aliases, :table_alias
 
     # TableAlias and Table both have a #table_name which is the name of the underlying table
-    alias :table_name :name
+    def table_name
+      name
+    end
 
-    def initialize(name, as: nil, type_caster: nil)
+    def initialize(name : String, as : String = nil, type_caster : (String | Nil) = nil)
       @name    = name.to_s
       @columns = nil
-      @aliases = []
+      # @aliases = []
       @type_caster = type_caster
 
       # Sometime AR sends an :as parameter to table, to let the table know
@@ -26,7 +34,7 @@ module Arel
       @table_alias = as
     end
 
-    def alias name = "#{self.name}_2"
+    def alias(name = "#{self.name}_2")
       Nodes::TableAlias.new(self, name).tap do |node|
         @aliases << node
       end
@@ -36,7 +44,7 @@ module Arel
       SelectManager.new(self)
     end
 
-    def join relation, klass = Nodes::InnerJoin
+    def join(relation, klass = Nodes::InnerJoin)
       return from unless relation
 
       case relation
@@ -48,39 +56,39 @@ module Arel
       from.join(relation, klass)
     end
 
-    def outer_join relation
+    def outer_join(relation)
       join(relation, Nodes::OuterJoin)
     end
 
-    def group *columns
+    def group(*columns)
       from.group(*columns)
     end
 
-    def order *expr
+    def order(*expr)
       from.order(*expr)
     end
 
-    def where condition
+    def where(condition)
       from.where condition
     end
 
-    def project *things
+    def project(*things)
       from.project(*things)
     end
 
-    def take amount
+    def take(amount)
       from.take amount
     end
 
-    def skip amount
+    def skip(amount)
       from.skip amount
     end
 
-    def having expr
+    def having(expr)
       from.having expr
     end
 
-    def [] name
+    def [](name)
       ::Arel::Attribute.new self, name
     end
 
@@ -91,13 +99,15 @@ module Arel
       @name.hash
     end
 
-    def eql? other
+    def eql?(other)
       self.class == other.class &&
         self.name == other.name &&
         self.aliases == other.aliases &&
         self.table_alias == other.table_alias
     end
-    alias :== :eql?
+    def ==(other)
+      eql?(other)
+    end
 
     def type_cast_for_database(attribute_name, value)
       type_caster.type_cast_for_database(attribute_name, value)
@@ -107,17 +117,15 @@ module Arel
       !type_caster.nil?
     end
 
-    protected
+    protected def type_caster
+      @type_caster
+    end
 
-    attr_reader :type_caster
-
-    private
-
-    def attributes_for columns
+    private def attributes_for(columns)
       return nil unless columns
 
       columns.map do |column|
-        Attributes.for(column).new self, column.name.to_sym
+        Attributes.for(column).new(self, column.name.to_sym)
       end
     end
 

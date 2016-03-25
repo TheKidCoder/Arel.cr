@@ -58,6 +58,6 @@ require "./nodes/select_statement"
 # require "./arel/nodes/right_outer_join"
 # require "./arel/nodes/string_join"
 
-# require "./arel/nodes/sql_literal"
+require "./nodes/sql_literal"
 
 # require "./arel/nodes/casted"
