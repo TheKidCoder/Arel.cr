@@ -36,7 +36,7 @@ module Arel
       Arel::Nodes::Grouping.new(Arel::Nodes::BitwiseShiftRight.new(self, other))
     end
 
-    def ~@
+    def ~
       Arel::Nodes::BitwiseNot.new(self)
     end
   end

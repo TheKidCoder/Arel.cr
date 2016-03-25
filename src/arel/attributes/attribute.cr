@@ -1,11 +1,14 @@
 module Arel
   module Attributes
-    class Attribute < Struct.new :relation, :name
+    class Attribute
       include Arel::Expressions
       include Arel::Predications
       include Arel::AliasPredication
       include Arel::OrderPredications
       include Arel::Math
+
+      getter :relation
+      getter :name
 
       ###
       # Create a node for lowering this attribute

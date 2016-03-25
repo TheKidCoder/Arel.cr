@@ -1,12 +1,12 @@
 # node
 require "./nodes/node"
-# require "./arel/nodes/select_statement"
+require "./nodes/select_statement"
 # require "./arel/nodes/select_core"
 # require "./arel/nodes/insert_statement"
 # require "./arel/nodes/update_statement"
 # require "./arel/nodes/bind_param"
 
-# # terminal
+# terminal
 
 # require "./arel/nodes/terminal"
 # require "./arel/nodes/true"
