@@ -1,7 +1,7 @@
 module Arel
   module Visitors
     class BindSubstitute
-      def initialize delegate
+      def initialize(delegate)
         @delegate = delegate
       end
     end

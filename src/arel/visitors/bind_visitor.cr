@@ -6,14 +6,12 @@ module Arel
         super
       end
 
-      def accept node, collector, &block
+      def accept(node, collector, &block)
         @block = block if block_given?
         super
       end
 
-      private
-
-      def visit_Arel_Nodes_Assignment o, collector
+      private def visit_Arel_Nodes_Assignment(o, collector)
         if o.right.is_a? Arel::Nodes::BindParam
           collector = visit o.left, collector
           collector << " = "
@@ -23,7 +21,7 @@ module Arel
         end
       end
 
-      def visit_Arel_Nodes_BindParam o, collector
+      private def visit_Arel_Nodes_BindParam(o, collector)
         if @block
           val = @block.call
           if String === val

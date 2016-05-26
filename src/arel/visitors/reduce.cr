@@ -1,17 +1,17 @@
-require 'arel/visitors/visitor'
+require "./visitor"
 
 module Arel
   module Visitors
     class Reduce < Arel::Visitors::Visitor
-      def accept object, collector
+      def accept(object, collector)
         visit object, collector
       end
 
-      private
+      
 
-      def visit object, collector
+      private def visit(object, collector)
         send dispatch[object.class], object, collector
-      rescue NoMethodError => e
+      rescue e : NoMethodError
         raise e if respond_to?(dispatch[object.class], true)
         superklass = object.class.ancestors.find { |klass|
           respond_to?(dispatch[klass], true)

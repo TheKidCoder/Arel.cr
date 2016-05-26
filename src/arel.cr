@@ -1,3 +1,10 @@
+macro alias_method(new_name, existing_method)
+  def {{new_name.id}}(*args)
+    {{existing_method.id}}(*args)
+  end
+end
+
+require "./macros"
 require "./arel/crud"
 require "./arel/factory_methods"
 
@@ -23,14 +30,14 @@ require "./arel/nodes"
 require "./arel/version"
 
 module Arel
-
   def self.sql(raw_sql : String)
-    # Arel::Nodes::SqlLiteral.new raw_sql
+    Arel::Nodes::SqlLiteral.new raw_sql
   end
 
   def self.star
-    # sql '*'
+    sql '*'
   end
-  ## Convenience Alias
-  # Node = Arel::Nodes::Node
+
+  # # Convenience Alias
+  Node = Arel::Nodes::Node
 end
