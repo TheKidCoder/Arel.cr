@@ -1,22 +1,22 @@
 module Arel
   class DeleteManager < Arel::TreeManager
     def initialize
-      super
+      previous_def
       @ast = Nodes::DeleteStatement.new
       @ctx = @ast
     end
 
-    def from relation
+    def from(relation)
       @ast.relation = relation
       self
     end
 
-    def take limit
+    def take(limit)
       @ast.limit = Nodes::Limit.new(Nodes.build_quoted(limit)) if limit
       self
     end
 
-    def wheres= list
+    def wheres=(list)
       @ast.wheres = list
     end
   end

@@ -3,7 +3,8 @@ require "./visitors/depth_first"
 require "./visitors/to_sql"
 
 # require 'arel/visitors/sqlite'
-# require 'arel/visitors/postgresql'
+require "./visitors/postgresql"
+
 # require 'arel/visitors/mysql'
 # require 'arel/visitors/mssql'
 # require 'arel/visitors/oracle'
