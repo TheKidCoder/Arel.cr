@@ -13,25 +13,15 @@ module Arel
     end
 
     property :name, :aliases, :table_alias
+    getter :columns
 
     # TableAlias and Table both have a #table_name which is the name of the underlying table
     def table_name
       name
     end
 
-    def initialize(name : String, as : String = nil, type_caster : (String | Nil) = nil)
-      @name    = name.to_s
-      @columns = nil
-      # @aliases = []
+    def initialize(@name : String, type_caster : (String | Nil) = nil)
       @type_caster = type_caster
-
-      # Sometime AR sends an :as parameter to table, to let the table know
-      # that it is an Alias.  We may want to override new, and return a
-      # TableAlias node?
-      if as.to_s == @name
-        as = nil
-      end
-      @table_alias = as
     end
 
     def alias(name = "#{self.name}_2")

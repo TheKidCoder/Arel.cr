@@ -15,14 +15,14 @@ require "./arel/math"
 require "./arel/alias_predication"
 require "./arel/order_predications"
 require "./arel/table"
-require "./arel/attributes"
-require "./arel/compatibility/wheres"
+# require "./arel/attributes"
+# require "./arel/compatibility/wheres"
 
-require "./arel/visitors"
+# require "./arel/visitors"
 
-# require 'arel/tree_manager'
+require "./arel/tree_manager"
 # require 'arel/insert_manager'
-# require 'arel/select_manager'
+require "./arel/select_manager"
 # require 'arel/update_manager'
 # require 'arel/delete_manager'
 require "./arel/nodes"

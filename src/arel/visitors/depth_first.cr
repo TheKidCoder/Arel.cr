@@ -1,8 +1,8 @@
 module Arel
   module Visitors
     class DepthFirst < Arel::Visitors::Visitor
-      def initialize(block : Proc?)
-        @block = block || Proc.new
+
+      def initialize(@block : Proc)
         previous_def
       end
 

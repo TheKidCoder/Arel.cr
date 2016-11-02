@@ -1,8 +1,8 @@
 module Arel
   module Nodes
     class SelectCore < Arel::Nodes::Node
-      attr_accessor :top, :projections, :wheres, :groups, :windows
-      attr_accessor :havings, :source, :set_quantifier
+      property :top, :projections, :wheres, :groups, :windows
+      property :havings, :source, :set_quantifier
 
       def initialize
         super()

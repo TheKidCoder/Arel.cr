@@ -2,7 +2,7 @@ module Arel
   module Visitors
     class Visitor
       def initialize
-        @dispatch = get_dispatch_cache
+        # @dispatch = get_dispatch_cache
       end
 
       def accept(object)

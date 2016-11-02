@@ -4,14 +4,10 @@ module Arel
       getter :cores
       property :limit, :orders, :lock, :offset, :with
 
-      def initialize(cores)
-        super()
-        @cores          = cores || [SelectCore.new]
-        # @orders         = []
-        @limit          = nil
-        @lock           = nil
-        @offset         = nil
-        @with           = nil
+      @cores = [] of Arel::Nodes::SelectCore
+
+      def initialize(@cores = nil)
+        super
       end
 
       def initialize_copy(other)

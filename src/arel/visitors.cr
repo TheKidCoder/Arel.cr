@@ -2,8 +2,8 @@ require "./visitors/visitor"
 require "./visitors/depth_first"
 require "./visitors/to_sql"
 
-# require 'arel/visitors/sqlite'
-require "./visitors/postgresql"
+require "./visitors/sqlite"
+# require "./visitors/postgresql"
 
 # require 'arel/visitors/mysql'
 # require 'arel/visitors/mssql'
